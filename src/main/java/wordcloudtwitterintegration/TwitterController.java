@@ -32,7 +32,7 @@ public class TwitterController {
 			return "redirect:/connect/twitter";
 		}
 		
-		SearchResults result = twitter.searchOperations().search("svt");
+		SearchResults result = twitter.searchOperations().search("#svt");
 		List<Tweet> tweets = result.getTweets();
 		
 		model.addAttribute("tweets",tweets);
