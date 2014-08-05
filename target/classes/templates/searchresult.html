@@ -1,12 +1,2 @@
-<html>
-	<head>
-		<title>Twitter search result</title>
-	</head>
-	<body>
-		<h4>Search result:</h4>
+<script>${tweets}</script>
 
-		<ul>
-			<li th:each="tweet:${tweets}" th:text="${tweet.text}"></li>
-		</ul>
-	</body>
-</html>

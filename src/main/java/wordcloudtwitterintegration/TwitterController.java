@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/")
@@ -27,7 +28,7 @@ public class TwitterController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String fetchTwitterData(Model model) {
+	public String fetchTwitterData(Model model, RedirectAttributes redirectAttrs) {
 		if(connectionRepository.findPrimaryConnection(Twitter.class) == null) {
 			return "redirect:/connect/twitter";
 		}
@@ -35,8 +36,9 @@ public class TwitterController {
 		SearchResults result = twitter.searchOperations().search("#svt");
 		List<Tweet> tweets = result.getTweets();
 		
-		model.addAttribute("tweets",tweets);
-		return "searchresult";
+		redirectAttrs.addFlashAttribute("tweets",tweets); //in order to redirect with an object we use FlashAttribute... 
+		return "redirect:t"; 
+		
 		
 	}
 	
