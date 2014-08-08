@@ -30,6 +30,7 @@ public class TwitterController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String fetchTwitterData(Model model, RedirectAttributes redirectAttrs) {
 		if(connectionRepository.findPrimaryConnection(Twitter.class) == null) {
+			
 			return "redirect:/connect/twitter";
 		}
 		
@@ -37,7 +38,7 @@ public class TwitterController {
 		List<Tweet> tweets = result.getTweets();
 		
 		redirectAttrs.addFlashAttribute("tweets",tweets); //in order to redirect with an object we use FlashAttribute... 
-		return "redirect:t"; 
+		return "redirect:/t"; 
 		
 		
 	}

@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TwitterRestController {
 
 	  @RequestMapping("/t")
-	    public List<Tweet> greeting(Model model) {
+	    public Tweet greeting(Model model) {
 	        
 		 List<Tweet> tweets= (List<Tweet>) model.asMap().get("tweets"); 
+		  
+		  
 		 
-		 return tweets;
+		 return tweets.get(0);
 		 
 		}
 }
